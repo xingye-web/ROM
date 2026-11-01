@@ -1,0 +1,259 @@
+/* ============================================================
+   用户面板 · 苹果风格（登录 + 账号信息）
+   ============================================================ */
+
+.account-page {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background:
+    radial-gradient(900px 460px at 50% -10%, rgba(55, 183, 255, 0.14), transparent 60%),
+    radial-gradient(760px 420px at 85% 0%, rgba(139, 92, 246, 0.12), transparent 60%),
+    var(--bg-0);
+}
+
+.account-shell {
+  display: flex;
+  flex-direction: column;
+  max-width: 520px;
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+/* 顶栏 */
+.account-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.account-nav .nav-cta {
+  font-size: 13px;
+  padding: 7px 16px;
+  white-space: nowrap;
+}
+
+/* 主内容 */
+.account-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 0 48px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* 卡片 */
+.account-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 40px 40px 36px;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.8);
+}
+
+/* 标题 */
+.account-head { text-align: center; margin-bottom: 28px; }
+.account-title {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: var(--grad-text);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.account-sub { font-size: 14.5px; color: var(--ink-2); margin-top: 10px; }
+
+/* Tabs */
+.account-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--line-soft);
+  margin-bottom: 28px;
+}
+.account-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--ink-2);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 0;
+  cursor: pointer;
+  position: relative;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+.account-tab:hover { color: var(--ink-1); }
+.account-tab.active { color: var(--ink-1); }
+.account-tab.active::after {
+  content: "";
+  position: absolute;
+  left: 20%; right: 20%; bottom: -1px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--grad);
+}
+
+/* 表单 */
+.account-form { display: flex; flex-direction: column; }
+.account-form[hidden] { display: none !important; }
+.account-label {
+  font-size: 13px;
+  color: var(--ink-2);
+  margin: 16px 0 8px;
+  font-weight: 500;
+}
+.account-label:first-child { margin-top: 0; }
+.account-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-size: 15px;
+  color: var(--ink-1);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  font-family: inherit;
+}
+.account-input::placeholder { color: var(--ink-3); }
+.account-input:focus {
+  border-color: rgba(41, 224, 200, 0.55);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 3px rgba(41, 224, 200, 0.12);
+}
+.account-submit {
+  margin-top: 26px;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.account-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* 错误 / 加载提示 */
+.account-error {
+  margin-top: 16px;
+  font-size: 13.5px;
+  color: #fb7185;
+  text-align: center;
+  min-height: 20px;
+}
+.account-loading {
+  margin-top: 16px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  text-align: center;
+}
+
+/* 用户信息卡片 */
+.account-info-card { text-align: left; }
+.account-info-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.account-avatar {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.account-info-title h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink-1);
+  letter-spacing: -0.01em;
+}
+.account-status-badge {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 980px;
+  letter-spacing: 1px;
+}
+.account-status-badge.active {
+  color: #3fe0c8;
+  background: rgba(45, 212, 191, 0.12);
+  border: 1px solid rgba(45, 212, 191, 0.35);
+}
+.account-status-badge.expired {
+  color: #fb7185;
+  background: rgba(244, 63, 94, 0.12);
+  border: 1px solid rgba(244, 63, 94, 0.35);
+}
+
+.account-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.info-item {
+  background: var(--glass);
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.info-label { font-size: 12.5px; color: var(--ink-3); letter-spacing: 0.5px; }
+.info-value {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink-1);
+  font-variant-numeric: tabular-nums;
+}
+.info-value.highlight { color: var(--teal); }
+
+.account-info-actions { margin-top: 26px; text-align: center; }
+.account-info-actions .btn { padding: 11px 28px; }
+
+/* 页脚 */
+.account-footer {
+  padding: 24px 0 32px;
+  text-align: center;
+}
+.account-footer p { font-size: 12px; color: var(--ink-3); }
+
+/* 响应式 */
+@media (max-width: 520px) {
+  .account-shell { padding: 0 16px; }
+  .account-nav { padding: 16px 0; }
+  .account-nav .nav-logo { font-size: 15px; }
+  .account-nav .logo-icon { width: 24px; height: 24px; }
+  .account-nav .nav-cta { font-size: 12px; padding: 6px 13px; white-space: nowrap; }
+  .account-main { padding: 16px 0 32px; }
+  .account-card { padding: 28px 22px 26px; border-radius: 20px; }
+  .account-title { font-size: 28px; }
+  .account-sub { font-size: 13.5px; }
+  .account-tab { font-size: 14px; }
+  .account-input { font-size: 14px; padding: 12px 14px; }
+  .account-submit { font-size: 15px; padding: 13px; }
+  .account-info-head { gap: 12px; }
+  .account-avatar { width: 48px; height: 48px; font-size: 24px; }
+  .account-info-title h2 { font-size: 19px; }
+  .account-info-grid { grid-template-columns: 1fr; gap: 12px; }
+  .info-item { padding: 14px 16px; }
+  .info-value { font-size: 16px; }
+  .account-footer p { font-size: 11px; }
+}

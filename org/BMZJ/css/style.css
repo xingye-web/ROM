@@ -416,7 +416,9 @@ body {
   margin-top: 8px;
 }
 .plugin-text p { font-size: 16px; color: var(--ink-2); margin-top: 14px; max-width: 430px; }
-.plugin-text .points { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+.points { display: flex; flex-wrap: wrap; gap: 8px; }
+.plugin-text .points { margin-top: 18px; }
+.feature-card .points { margin-bottom: 22px; }
 .chip {
   font-size: 13px;
   color: var(--ink-1);
@@ -940,6 +942,10 @@ body {
 /* ============================================================
    响应式
    ============================================================ */
+
+/* 锚点跳转时标题不被固定导航栏遮挡 */
+.section { scroll-margin-top: 72px; }
+
 @media (max-width: 900px) {
   .nav-links { display: none; }
   .feature-grid { grid-template-columns: 1fr; }
@@ -954,8 +960,97 @@ body {
   .footer-cols { grid-template-columns: repeat(2, 1fr); }
   .hero-stats { gap: 28px; }
 }
-@media (max-width: 480px) {
+
+/* ===== 手机端（安卓 / iOS 浏览器） ===== */
+@media (max-width: 640px) {
+  html { -webkit-text-size-adjust: 100%; }
+
+  /* 导航：只留 logo + 立即下载，隐藏次要链接防溢出 */
+  .nav { height: 56px; }
+  .nav-inner { padding: 0 16px; }
+  .nav-logo { font-size: 15px; gap: 8px; }
+  .logo-icon { width: 24px; height: 24px; border-radius: 6px; }
+  .nav-actions { gap: 10px; }
+  .nav-actions .nav-group { display: none; }
+  .nav-cta { font-size: 12.5px; padding: 7px 15px; white-space: nowrap; }
+
+  /* Hero */
+  .hero { padding: calc(var(--nav-h) + 56px) 16px 28px; }
+  .hero-badge { font-size: 12px; padding: 6px 14px; }
+  .hero-title { font-size: 44px; }
+  .hero-sub { font-size: 16px; margin-top: 12px; }
+  .hero-desc { font-size: 14.5px; margin-top: 12px; }
+  .hero-actions { gap: 12px; }
+  .hero-actions .btn { padding: 11px 22px; font-size: 14px; }
+  .hero-stats { gap: 20px; margin-top: 30px; }
+  .hero-stat .n { font-size: 24px; }
+  .hero-stat .l { font-size: 11px; }
+  .hero-shot { margin-top: 40px; }
+
+  /* section */
+  .section { padding: 72px 16px; scroll-margin-top: 60px; }
+  .section-title { font-size: 30px; }
+  .section-sub { font-size: 15px; margin-top: 12px; }
+
+  /* 功能卡片 */
+  .feature-grid { gap: 18px; margin-top: 40px; }
+  .feature-card { padding: 24px 22px 0; border-radius: 18px; }
+  .feature-icon { width: 46px; height: 46px; font-size: 24px; border-radius: 13px; }
+  .feature-card h3 { font-size: 20px; margin: 14px 0 8px; }
+  .feature-card p { font-size: 14px; margin-bottom: 18px; }
+  .feature-card .points { margin-bottom: 18px; }
+
+  /* 插件 */
+  .plugin-list { gap: 40px; margin-top: 44px; }
+  .plugin-row { gap: 20px; }
+  .plugin-text h3 { font-size: 22px; }
+  .plugin-text p { font-size: 14.5px; }
+  .plugin-num { font-size: 12px; }
+
+  /* chip / tag */
+  .chip { font-size: 12px; padding: 5px 11px; }
+  .tag { font-size: 11px; padding: 2px 7px; margin-left: 6px; }
+
+  /* 状态卡片 */
+  .status-grid { gap: 14px; margin-top: 28px; }
+  .status-card { padding: 18px 18px; }
+  .status-name { font-size: 15px; }
+
+  /* 权威用户 */
+  .vip-wrap { gap: 24px; margin-top: 40px; }
+  .vip-card { padding: 28px 24px; border-radius: 20px; }
+  .vip-card h3 { font-size: 24px; }
+  .login-strip { padding: 36px 16px; margin-top: 36px; }
+
+  /* 品牌 */
+  .brand-grid { gap: 12px; margin-top: 40px; }
+  .brand-item { padding: 20px 12px; }
+
+  /* 统计 */
+  .stats-grid { gap: 14px; margin-top: 40px; }
+  .stat-card { padding: 32px 16px; }
+
+  /* 表格 */
+  .catalog-table-wrap { margin-top: 36px; }
+  .catalog-table th, .catalog-table td { padding: 12px 14px; font-size: 13.5px; }
+
+  /* 使用须知 */
+  .notice-head { padding: 22px 22px 18px; }
+  .notice-body { padding: 22px 22px 26px; }
+  .notice-title { font-size: 17px; }
+
+  /* 页脚 */
+  .footer { padding: 48px 20px 32px; }
+  .footer-cols { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+  /* 回到顶部 */
+  .back-top { right: 14px; bottom: 14px; width: 42px; height: 42px; font-size: 18px; }
+}
+
+@media (max-width: 400px) {
+  .hero-title { font-size: 36px; }
   .brand-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-cols { grid-template-columns: 1fr; }
-  .hero-title { font-size: 48px; }
+  .catalog-table th, .catalog-table td { padding: 10px 8px; font-size: 12px; }
 }

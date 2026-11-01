@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用户面板 - 北梦之镜</title>
+<meta name="description" content="北梦之镜用户面板，登录查看账号状态、用户类型、限制类型与剩余时长。">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/account.css">
+<link rel="icon" href="../img/logo.png" type="image/png">
+</head>
+<body class="account-page">
+
+<div class="account-shell">
+  <!-- 顶栏 -->
+  <header class="account-nav">
+    <a class="nav-logo" href="../index.html">
+      <img class="logo-icon" src="../img/logo.png" alt="北梦之镜">
+      北梦之镜
+    </a>
+    <a class="nav-cta" href="../index.html">返回官网</a>
+  </header>
+
+  <!-- 主内容 -->
+  <main class="account-main">
+    <!-- 登录卡片（未登录） -->
+    <div class="account-card" id="login-view">
+      <div class="account-head">
+        <h1 class="account-title">用户面板</h1>
+        <p class="account-sub">登录后查看账号状态、用户类型与剩余时长</p>
+      </div>
+
+      <div class="account-tabs">
+        <button class="account-tab active" data-tab="account" type="button">账号登录</button>
+        <button class="account-tab" data-tab="code" type="button">激活码登录</button>
+      </div>
+
+      <!-- 账号登录表单 -->
+      <form class="account-form" id="account-form">
+        <label class="account-label" for="username">用户名</label>
+        <input class="account-input" type="text" id="username" placeholder="请输入用户名" autocomplete="username">
+        <label class="account-label" for="password">密码</label>
+        <input class="account-input" type="password" id="password" placeholder="请输入密码" autocomplete="current-password">
+        <button type="submit" class="btn btn-primary account-submit" id="account-submit">登录</button>
+      </form>
+
+      <!-- 激活码登录表单 -->
+      <form class="account-form" id="code-form" hidden>
+        <label class="account-label" for="code-input">激活码</label>
+        <input class="account-input" type="text" id="code-input" placeholder="请输入激活码" autocomplete="off">
+        <button type="submit" class="btn btn-primary account-submit" id="code-submit">立即激活</button>
+      </form>
+
+      <p class="account-error" id="login-error"></p>
+      <p class="account-loading" id="login-loading" hidden>正在连接服务器验证…</p>
+    </div>
+
+    <!-- 用户信息卡片（登录成功） -->
+    <div class="account-card account-info-card" id="info-view" hidden>
+      <div class="account-info-head">
+        <div class="account-avatar">👤</div>
+        <div class="account-info-title">
+          <h2 id="info-username">用户</h2>
+          <span class="account-status-badge" id="info-status">正常</span>
+        </div>
+      </div>
+
+      <div class="account-info-grid">
+        <div class="info-item">
+          <span class="info-label">用户类型</span>
+          <span class="info-value" id="info-user-type">—</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">限制类型</span>
+          <span class="info-value" id="info-limit-type">—</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">到期时间</span>
+          <span class="info-value" id="info-expire">—</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">剩余时长</span>
+          <span class="info-value" id="info-remaining">—</span>
+        </div>
+      </div>
+
+      <div class="account-info-actions">
+        <button class="btn btn-ghost" id="logout-btn" type="button">退出登录</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="account-footer">
+    <p>自 2024 年 10 月起运营 · Copyright © 2024-2026 星野ROM桌面版联合北梦之境 · 保留所有权利</p>
+  </footer>
+</div>
+
+<script src="../js/account.js"></script>
+</body>
+</html>
