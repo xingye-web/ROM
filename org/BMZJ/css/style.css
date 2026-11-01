@@ -806,7 +806,7 @@ body {
     radial-gradient(900px 400px at 50% 0%, rgba(55, 183, 255, 0.10), transparent 65%),
     linear-gradient(180deg, #0a1224 0%, #081022 100%);
   border-top: 1px solid var(--line-soft);
-  padding: 72px 24px 40px;
+  padding: 64px 24px 40px;
 }
 .footer::before {
   content: "";
@@ -816,12 +816,9 @@ body {
   opacity: 0.45;
 }
 .footer-inner { max-width: var(--max-w); margin: 0 auto; }
-.footer-top {
-  display: flex;
-  gap: 64px;
-  flex-wrap: wrap;
-}
-.footer-brand { flex: 1.2; min-width: 260px; }
+
+/* 品牌区（顶部整行，一句话说清定位） */
+.footer-brand { margin-bottom: 42px; }
 .footer-logo {
   font-size: 19px;
   font-weight: 700;
@@ -839,23 +836,19 @@ body {
   object-fit: cover;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
-.footer-logo .dot {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--grad);
-  box-shadow: 0 0 14px var(--glow-teal);
-}
 .footer-desc {
   font-size: 14px;
   color: var(--ink-2);
-  line-height: 1.75;
-  margin-top: 18px;
-  max-width: 340px;
+  line-height: 1.7;
+  margin-top: 14px;
+  max-width: 520px;
 }
+
+/* 链接区（4 列，移动端保持 2×2） */
 .footer-cols {
-  flex: 2;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
+  gap: 32px;
 }
 .footer-col h4 {
   font-size: 13px;
@@ -863,14 +856,14 @@ body {
   color: var(--ink-1);
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 .footer-col a {
   display: block;
   font-size: 14px;
   color: var(--ink-2);
   text-decoration: none;
-  padding: 6px 0;
+  padding: 5px 0;
   transition: color 0.2s, transform 0.2s;
 }
 .footer-col a:hover {
@@ -880,7 +873,7 @@ body {
 .footer-divider {
   height: 1px;
   background: var(--line-soft);
-  margin: 44px 0 26px;
+  margin: 44px 0 24px;
 }
 .footer-bottom {
   display: flex;
@@ -956,7 +949,6 @@ body {
   .brand-grid { grid-template-columns: repeat(3, 1fr); }
   .stats-grid { grid-template-columns: 1fr; }
   .status-grid { grid-template-columns: 1fr; }
-  .footer-top { flex-direction: column; gap: 40px; }
   .footer-cols { grid-template-columns: repeat(2, 1fr); }
   .hero-stats { gap: 28px; }
 }
@@ -1051,6 +1043,5 @@ body {
 @media (max-width: 400px) {
   .hero-title { font-size: 36px; }
   .brand-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-cols { grid-template-columns: 1fr; }
   .catalog-table th, .catalog-table td { padding: 10px 8px; font-size: 12px; }
 }

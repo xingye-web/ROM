@@ -1,12 +1,16 @@
-// 北梦之镜 · 用户面板登录逻辑（安全版）
-// 前端只读取预生成的校验文件 users.json（密码/激活码均为 SHA-256 哈希），
-// 不包含 Fernet 密钥，不包含任何明文密码，无法还原 404.dat。
+// 北梦之镜 · 用户面板登录逻辑（安全版 · PBKDF2 加盐高强度）
+// 前端只读取预生成的校验文件 BMZJ3383603143.bin（密码/激活码均为「独立盐 + PBKDF2」加盐结果），
+// 不包含 Fernet 密钥、不包含任何明文密码、不包含原始密码哈希，无法还原 404.dat。
+// 校验链路：verify = PBKDF2-HMAC-SHA256(salt, sha256(输入), iterations)
 (function () {
   'use strict';
 
-  // 校验文件位置（由本地脚本从 404.dat 生成，密码/激活码均为 SHA-256 哈希）
-  // 用户面板位于 org/BMZJ/user-panel/，users.json 在 org/，故向上两级
-  var USERS_URL = '../../users.json';
+  // 校验文件位置（由本地脚本从 404.dat 生成，PBKDF2 加盐）
+  // 用户面板位于 org/BMZJ/user-panel/，校验文件在 org/，故向上两级
+  var USERS_URL = '../../BMZJ3383603143.bin';
+
+  // 迭代次数兜底（校验文件里 iterations 优先）
+  var DEFAULT_ITERATIONS = 300000;
 
   // ---------- 工具函数 ----------
   function bytesToHex(bytes) {
@@ -17,11 +21,42 @@
     return hex;
   }
 
+  function hexToBytes(hex) {
+    var bytes = new Uint8Array(hex.length / 2);
+    for (var i = 0; i < bytes.length; i++) {
+      bytes[i] = parseInt(hex.substr(i * 2, 2), 16);
+    }
+    return bytes;
+  }
+
   function sha256Hex(str) {
     var data = new TextEncoder().encode(str);
     return crypto.subtle.digest('SHA-256', data).then(function (buf) {
       return bytesToHex(new Uint8Array(buf));
     });
+  }
+
+  // PBKDF2-HMAC-SHA256：password 为 hex 字符串，salt 为 hex 字符串，返回 32 字节 hex
+  function pbkdf2Hex(saltHex, passwordHex, iterations) {
+    var pwBytes = new TextEncoder().encode(passwordHex);
+    var saltBytes = hexToBytes(saltHex);
+    return crypto.subtle.importKey('raw', pwBytes, 'PBKDF2', false, ['deriveBits'])
+      .then(function (key) {
+        return crypto.subtle.deriveBits(
+          { name: 'PBKDF2', salt: saltBytes, iterations: iterations, hash: 'SHA-256' },
+          key,
+          256
+        );
+      })
+      .then(function (bits) {
+        return bytesToHex(new Uint8Array(bits));
+      });
+  }
+
+  // 计算 verify = PBKDF2(salt, sha256(输入), iterations)
+  async function calcVerify(saltHex, iterations, input) {
+    var material = await sha256Hex(input);
+    return pbkdf2Hex(saltHex, material, iterations);
   }
 
   // ---------- 拉取校验文件 ----------
@@ -157,7 +192,7 @@
     showError('');
   }
 
-  // ---------- 账号登录（SHA-256 哈希比对） ----------
+  // ---------- 账号登录（PBKDF2 加盐比对） ----------
   async function loginAccount(username, password) {
     if (!username.trim()) { showError('请输入用户名'); return; }
     if (!password) { showError('请输入密码'); return; }
@@ -166,34 +201,36 @@
     try {
       var data = await fetchUsers();
       var accounts = (data && data.accounts) || [];
-      var hash = await sha256Hex(password);
+      var iterations = (data && data.iterations) || DEFAULT_ITERATIONS;
 
+      // 先按用户名定位账号，只对命中项做一次 PBKDF2（省时）
+      var acc = null;
       for (var i = 0; i < accounts.length; i++) {
-        var acc = accounts[i];
-        if (acc.username === username) {
-          var stored = (acc.password_hash || '').toLowerCase();
-          if (stored && hash.toLowerCase() === stored) {
-            var p = parseExpire(acc);
-            if (p.expired) {
-              showError('账号已到期，请联系管理员续期');
-              setLoading(false);
-              return;
-            }
-            showInfo(acc, username);
-            setLoading(false);
-            return;
-          }
+        if (accounts[i].username === username) { acc = accounts[i]; break; }
+      }
+      if (!acc) { showError('用户名或密码错误'); setLoading(false); return; }
+
+      var verify = await calcVerify(acc.salt, iterations, password);
+      if (verify.toLowerCase() === (acc.verify || '').toLowerCase()) {
+        var p = parseExpire(acc);
+        if (p.expired) {
+          showError('账号已到期，请联系管理员续期');
+          setLoading(false);
+          return;
         }
+        showInfo(acc, username);
+        setLoading(false);
+        return;
       }
       showError('用户名或密码错误');
     } catch (e) {
-      showError('无法连接服务器，请确认已部署到正式域名');
+      showError('无法连接到服务器，请检查您的网络');
       console.error(e);
     }
     setLoading(false);
   }
 
-  // ---------- 激活码登录（SHA-256 哈希比对） ----------
+  // ---------- 激活码登录（PBKDF2 加盐比对） ----------
   async function loginCode(code) {
     if (!code.trim()) { showError('请输入激活码'); return; }
     setLoading(true);
@@ -202,12 +239,12 @@
       var data = await fetchUsers();
       var codes = (data && data.codes) || [];
       var accounts = (data && data.accounts) || [];
-      var hash = await sha256Hex(code);
+      var iterations = (data && data.iterations) || DEFAULT_ITERATIONS;
 
       // 匹配独立激活码列表
       for (var i = 0; i < codes.length; i++) {
-        var stored = (codes[i].code_hash || '').toLowerCase();
-        if (stored && hash.toLowerCase() === stored) {
+        var verify = await calcVerify(codes[i].salt, iterations, code);
+        if (verify.toLowerCase() === (codes[i].verify || '').toLowerCase()) {
           var p = parseExpire(codes[i]);
           if (p.expired) { showError('激活码已到期，请联系管理员续期'); setLoading(false); return; }
           showInfo(codes[i], '普通用户');
@@ -215,16 +252,25 @@
           return;
         }
       }
-      // 匹配账号的 code_hash / password_hash / username
+      // 匹配账号的 code_verify / verify / username
       for (var j = 0; j < accounts.length; j++) {
         var acc = accounts[j];
-        var codeHash = (acc.code_hash || '').toLowerCase();
-        var pwdHash = (acc.password_hash || '').toLowerCase();
-        if ((codeHash && hash.toLowerCase() === codeHash) ||
-            (pwdHash && hash.toLowerCase() === pwdHash) ||
-            acc.username === code) {
-          var pe = parseExpire(acc);
-          if (pe.expired) { showError('该账号已到期，请联系管理员续期'); setLoading(false); return; }
+        var codeVerify = acc.code_verify || '';
+        var pwdVerify = acc.verify || '';
+        var codeHash = null;
+        if (codeVerify) {
+          codeHash = await calcVerify(acc.code_salt, iterations, code);
+          if (codeHash.toLowerCase() === codeVerify.toLowerCase()) {
+            var pe = parseExpire(acc);
+            if (pe.expired) { showError('该账号已到期，请联系管理员续期'); setLoading(false); return; }
+            showInfo(acc, acc.username);
+            setLoading(false);
+            return;
+          }
+        }
+        if (acc.username === code) {
+          var pe2 = parseExpire(acc);
+          if (pe2.expired) { showError('该账号已到期，请联系管理员续期'); setLoading(false); return; }
           showInfo(acc, acc.username);
           setLoading(false);
           return;
@@ -232,7 +278,7 @@
       }
       showError('激活码无效');
     } catch (e) {
-      showError('无法连接服务器，请确认已部署到正式域名');
+      showError('无法连接到服务器，请检查您的网络');
       console.error(e);
     }
     setLoading(false);
