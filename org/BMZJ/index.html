@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北梦之镜 - Mirror of NorthDream · ROM 下载与刷机工具</title>
+<meta name="description" content="北梦之镜是一款 Windows 桌面端 ROM 下载与刷机工具，覆盖 15 大品牌、2680 款机型、83164 条官方 ROM 直链。支持镜像获取、直链下载、速刷、一键 ROOT、GKI 内核、分区提取与投屏。">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="img/logo.png" type="image/png">
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#top">
+      <img class="logo-icon" src="img/logo.png" alt="北梦之镜">
+      北梦之镜
+    </a>
+    <div class="nav-links">
+      <a href="#status">服务状态</a>
+      <a href="#features">功能</a>
+      <a href="#plugins">插件</a>
+      <a href="#vip">账号登录</a>
+      <a href="#brands">品牌</a>
+      <a href="#notice">使用须知</a>
+    </div>
+    <div class="nav-actions">
+      <a class="nav-group" href="https://qm.qq.com/q/4dipYvBqIw" target="_blank">交流群</a>
+      <a class="nav-cta" href="https://qfile.qq.com/q/YZ2RIbnO48" target="_blank">立即下载</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="pulse"></span> Windows 桌面端 · ROM 下载与刷机</div>
+    <h1 class="hero-title">北梦之镜</h1>
+    <p class="hero-sub">Mirror of NorthDream</p>
+    <p class="hero-desc">一款 Windows 桌面端工具，快速获取 ROM 直链与分区镜像，一键刷机、一键 ROOT。</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://qfile.qq.com/q/YZ2RIbnO48" target="_blank">立即下载</a>
+      <a class="btn btn-ghost" href="https://qm.qq.com/q/4dipYvBqIw" target="_blank">加入交流群</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="n">15</div><div class="l">覆盖品牌</div></div>
+      <div class="hero-stat"><div class="n">2680</div><div class="l">收录机型</div></div>
+      <div class="hero-stat"><div class="n">83164</div><div class="l">官方 ROM 直链</div></div>
+    </div>
+    <div class="hero-shot">
+      <img src="img/main.png" alt="北梦之镜主界面">
+    </div>
+  </div>
+</section>
+
+<!-- 服务状态 -->
+<section class="section section--deep" id="status">
+  <div class="section-inner">
+    <p class="section-eyebrow">Service Status</p>
+    <h2 class="section-title">服务状态</h2>
+    <p class="section-sub">全部服务运行正常，持续稳定提供 ROM 下载与刷机支持。</p>
+    <div class="status-meta">
+      <span class="status-time" id="status-check-time">正在检测服务状态…</span>
+      <span class="status-auto"><span class="status-auto-dot"></span>每 30 秒自动刷新</span>
+    </div>
+    <div class="status-grid">
+      <div class="status-card reveal" data-url="../1.json">
+        <div class="status-dot online"></div>
+        <div class="status-info">
+          <div class="status-name">北梦星海服务器</div>
+          <div class="status-desc">主服务 · 镜像获取 / 直链解析</div>
+        </div>
+        <div class="status-badge ok">在线</div>
+      </div>
+      <div class="status-card reveal" data-url="../1.json">
+        <div class="status-dot online"></div>
+        <div class="status-info">
+          <div class="status-name">官方线路 · 主线</div>
+          <div class="status-desc">北梦星海-01 · 全球</div>
+        </div>
+        <div class="status-badge ok">在线</div>
+      </div>
+      <div class="status-card reveal" data-url="../2.json">
+        <div class="status-dot online"></div>
+        <div class="status-info">
+          <div class="status-name">官方线路 · 副线</div>
+          <div class="status-desc">北梦星海-02 · 全球</div>
+        </div>
+        <div class="status-badge ok">在线</div>
+      </div>
+      <div class="status-card reveal" data-url="../3.json">
+        <div class="status-dot online"></div>
+        <div class="status-info">
+          <div class="status-name">公告 / 更新 / 鉴权</div>
+          <div class="status-desc">公告 · 版本检查 · 账号登录</div>
+        </div>
+        <div class="status-badge ok">正常</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 核心功能 -->
+<section class="section section--glow" id="features">
+  <div class="section-inner">
+    <p class="section-eyebrow">Core Features</p>
+    <h2 class="section-title">从获取镜像到一键刷机</h2>
+    <p class="section-sub">全程覆盖，开箱即用，每一步都为刷机玩家量身打造。</p>
+    <div class="feature-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">🪞</div>
+        <h3>镜像获取</h3>
+        <p>从北梦星海镜像数据库一键获取 <strong>boot、init_boot、vendor_boot、recovery、dtbo、vbmeta</strong> 等常用分区镜像。支持 A/B 槽位（boot_a / boot_b），小米 / 红米自动走卡刷包 payload.bin 提取，Realme / OPPO 老机型提供全量包手动提取方案。</p>
+        <div class="points"><span class="chip">A/B 槽位</span><span class="chip">payload 提取</span><span class="chip">分区全覆盖</span></div>
+        <img src="img/mirror.png" alt="镜像获取" loading="lazy">
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">⚡</div>
+        <h3>ROM 直链</h3>
+        <p>覆盖 15 大品牌的官方 ROM 直链，按 <strong>品牌 → 类型 → 系列 → 机型 → 版本</strong> 逐级筛选，一键解析官方直链与 10 分钟动态签名链接，即点即下，链接带倒计时刷新。</p>
+        <div class="points"><span class="chip">官方直链</span><span class="chip">动态签名</span><span class="chip">逐级筛选</span></div>
+        <img src="img/direct.png" alt="ROM 直链" loading="lazy">
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🔧</div>
+        <h3>fastboot 速刷</h3>
+        <p>fastboot 分区刷写 + 米系线刷包一键解析，内置 <strong>adb / fastboot</strong> 无需配置环境，支持自定义指令执行、自动检测目标分区，刷写进度实时显示。</p>
+        <div class="points"><span class="chip">线刷包解析</span><span class="chip">自定义命令</span><span class="chip">内置工具</span></div>
+        <img src="img/flash.png" alt="速刷" loading="lazy">
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">👑</div>
+        <h3>一键 ROOT</h3>
+        <p>AUTO-SA-ROOT 全自动 ROOT，KernelSU 管理器手机端修补 → 监控下载目录抓回 → fastboot 刷入，<strong>14 步全自动</strong>完成，支持 init_boot / boot 分区与 LKM / 修补两种方案。</p>
+        <div class="points"><span class="chip">KernelSU</span><span class="chip">全自动 14 步</span><span class="chip">LKM / 修补</span></div>
+        <img src="img/auto.png" alt="一键 ROOT" loading="lazy">
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">📺</div>
+        <h3>实时投屏</h3>
+        <p>scrcpy 低延迟投屏，把手机屏幕实时投射到电脑。帧率 / 分辨率 / 比特率自由调节，支持保持唤醒、推送 / 导出文件、安装 / 冻结 / 卸载应用。</p>
+        <div class="points"><span class="chip">低延迟</span><span class="chip">参数可调</span><span class="chip">文件管理</span></div>
+        <img src="img/screencast.png" alt="投屏" loading="lazy">
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🌐</div>
+        <h3>多语言 · 多地区</h3>
+        <p>多语言界面 + 19 个地区自由切换，浅色 / 深色 / 跟随系统三种主题。切换地区后只加载该地区有版本的机型与系列，数据更精准。</p>
+        <div class="points"><span class="chip">多语言</span><span class="chip">19 地区</span><span class="chip">三种主题</span></div>
+        <img src="img/settings.png" alt="设置" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 插件 -->
+<section class="section section--dark" id="plugins">
+  <div class="section-inner">
+    <p class="section-eyebrow">Plugins</p>
+    <h2 class="section-title">七大插件，即装即用</h2>
+    <p class="section-sub">登录后自动发现并加载，无需手动配置，功能随插件持续更新。</p>
+    <div class="plugin-list">
+      <div class="plugin-row reveal">
+        <div class="plugin-text">
+          <div class="plugin-num">01</div>
+          <h3>直链 <span class="tag">rom_fetcher v4.0</span></h3>
+          <p>ROM 直链获取插件。逐级选择品牌、类型、系列、机型、版本，一键解析官方直链与 10 分钟动态签名链接，复制即用。</p>
+          <div class="points"><span class="chip">官方直链</span><span class="chip">动态签名</span><span class="chip">一键复制</span></div>
+        </div>
+        <img src="img/direct.png" alt="直链插件" loading="lazy">
+      </div>
+      <div class="plugin-row reveal">
+        <div class="plugin-text">
+          <div class="plugin-num">02</div>
+          <h3>ROM 下载器 <span class="tag">rom_downloader v4.4</span></h3>
+          <p>并发下载 UI，aria2c 16 线程加速，实时显示速度 / 总大小 / 剩余时间，支持断点续传与自定义下载。</p>
+          <div class="points"><span class="chip">16 线程</span><span class="chip">断点续传</span><span class="chip">实时速率</span></div>
+        </div>
+        <img src="img/rom.png" alt="ROM 下载器" loading="lazy">
+      </div>
+      <div class="plugin-row reveal">
+        <div class="plugin-text">
+          <div class="plugin-num">03</div>
+          <h3>速刷 <span class="tag">flash v3.6</span></h3>
+          <p>fastboot 分区刷写与米系线刷包解析，自定义 adb / fastboot 指令，内置工具无需配置环境，自动检测目标分区。</p>
+          <div class="points"><span class="chip">线刷包解析</span><span class="chip">自定义命令</span><span class="chip">内置工具</span></div>
+        </div>
+        <img src="img/flash.png" alt="速刷插件" loading="lazy">
+      </div>
+      <div class="plugin-row reveal">
+        <div class="plugin-text">
+          <div class="plugin-num">04</div>
+          <h3>AUTO ROOT <span class="tag">auto_root v4.1</span></h3>
+          <p>KernelSU 一键 ROOT，管理器手机端修补 + 监控抓回 + fastboot 刷入，14 步全自动，支持 init_boot / boot 与 LKM / 修补。</p>
+          <div class="points"><span class="chip">KernelSU</span><span class="chip">全自动</span><span class="chip">LKM / 修补</span></div>
+        </div>
+        <img src="img/auto.png" alt="AUTO ROOT 插件" loading="lazy">
+      </div>
+      <div class="plugin-row reveal">
+        <div class="plugin-text">
+          <div class="plugin-num">05</div>
+          <h3>GKI 内核 <span class="tag">gki_browser v2.4</span></h3>
+          <p>GKI 内核资源浏览与下载，支持 AnyKernel3 刷入包，按品牌 / 版本筛选，代理加载与下载加速。</p>
+          <div class="points"><span class="chip">内核浏览</span><span class="chip">AnyKernel3</span><span class="chip">代理加速</span></div>
+        </div>
+        <img src="img/gki.png" alt="GKI 内核插件" loading="lazy">
+      </div>
+      <div class="plugin-row reveal">
+        <div class="plugin-text">
+          <div class="plugin-num">06</div>
+          <h3>提取 <span class="tag">cloud_mirror v2.4</span></h3>
+          <p>payload.bin 分区提取，卡刷包 / 全量包直接解出 boot、init_boot 等镜像，支持多线程提取与分区勾选。</p>
+          <div class="points"><span class="chip">payload 提取</span><span class="chip">多线程</span><span class="chip">分区勾选</span></div>
+        </div>
+        <img src="img/extract.png" alt="提取插件" loading="lazy">
+      </div>
+      <div class="plugin-row reveal">
+        <div class="plugin-text">
+          <div class="plugin-num">07</div>
+          <h3>投屏 <span class="tag">scrcpy v3.6</span></h3>
+          <p>scrcpy 实时投屏，帧率 / 分辨率 / 比特率自定义，支持保持唤醒、推送 / 导出文件、安装 / 冻结应用。</p>
+          <div class="points"><span class="chip">实时投屏</span><span class="chip">低延迟</span><span class="chip">参数可调</span></div>
+        </div>
+        <img src="img/screencast.png" alt="投屏插件" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 权威用户 -->
+<section class="section section--glow" id="vip">
+  <div class="section-inner">
+    <p class="section-eyebrow">Authority</p>
+    <h2 class="section-title">权威用户 · 无限制</h2>
+    <p class="section-sub">账号 / 激活码登录，权威用户畅享全部功能。</p>
+    <div class="vip-wrap">
+      <div class="vip-card reveal">
+        <div class="crown">👑</div>
+        <h3>权威用户</h3>
+        <div class="sub">Unlimited · 无限制</div>
+        <ul>
+          <li>全部 7 大插件 + 镜像获取功能解锁</li>
+          <li>剩余时长：<strong>∞ 无限制</strong></li>
+          <li>永久有效，无需续期</li>
+          <li>管理员 / 权威用户 / 激活码 多种登录方式</li>
+        </ul>
+        <a class="btn btn-primary" href="https://qm.qq.com/q/4dipYvBqIw" target="_blank">获取账号</a>
+      </div>
+      <div class="vip-shot reveal">
+        <img src="img/main.png" alt="权威用户已登录">
+      </div>
+    </div>
+    <div class="login-strip reveal">
+      <img src="img/login.png" alt="登录界面">
+      <p>账号登录 · 激活码登录 · 令牌登录</p>
+    </div>
+  </div>
+</section>
+
+<!-- 覆盖品牌 -->
+<section class="section section--deep" id="brands">
+  <div class="section-inner">
+    <p class="section-eyebrow">Brands</p>
+    <h2 class="section-title">覆盖 15 大主流品牌</h2>
+    <p class="section-sub">持续更新收录，官方 ROM 直链直达。</p>
+    <div class="brand-grid" id="brand-grid"></div>
+  </div>
+</section>
+
+<!-- 机型目录 + 官方包 -->
+<section class="section section--dark" id="catalog">
+  <div class="section-inner">
+    <p class="section-eyebrow">Catalog</p>
+    <h2 class="section-title">机型目录 · 官方包</h2>
+    <p class="section-sub">真实数据，实时同步。</p>
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-num" id="stat-brands">15</div>
+        <div class="stat-label">覆盖品牌</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-num" id="stat-models">2680</div>
+        <div class="stat-label">收录机型</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-num" id="stat-packages">83164</div>
+        <div class="stat-label">官方 ROM 直链</div>
+      </div>
+    </div>
+    <div class="catalog-table-wrap reveal" id="catalog-table"></div>
+  </div>
+</section>
+
+<!-- 使用前须知 -->
+<section class="section section--deep" id="notice">
+  <div class="section-inner">
+    <p class="section-eyebrow">Notice</p>
+    <h2 class="section-title">使用前须知</h2>
+    <p class="section-sub">请在使用前仔细阅读以下条款。</p>
+    <div class="notice-card reveal">
+      <div class="notice-head">
+        <div class="notice-title">星野ROM / 北梦之境 · 使用前须知</div>
+        <div class="notice-tags">
+          <span class="notice-tag free">完全免费</span>
+          <span class="notice-tag">同意后使用</span>
+          <span class="notice-ver">v1.2.5 · 2026-10-24</span>
+        </div>
+      </div>
+      <div class="notice-body">
+        <p class="notice-lead">欢迎使用「星野ROM」。在使用本应用程序之前，请仔细阅读以下条款：</p>
+        <ul class="notice-list">
+          <li>本应用是由第三方开发的非官方工具，与 OPPO、一加、真我、小米、红米、vivo、iQOO、联想、红魔、黑鲨、三星、魅族等手机厂商没有任何关联。支持查看 ColorOS、realme UI、HyperOS、OriginOS、Flyme、One UI 等系统更新信息，所有品牌商标归各自厂商所有。</li>
+          <li>本应用仅通过官方公开渠道获取系统更新数据，不会修改或影响任何系统功能。</li>
+          <li>本应用不会收集任何用户隐私数据，所有操作均在本地进行。</li>
+          <li>本应用完全免费，开发者保留随时更新、修改或终止服务的权利。</li>
+          <li>用户使用本应用所产生的任何风险和后果均由用户自行承担，开发者不承担任何法律责任。</li>
+        </ul>
+        <div class="notice-consent">
+          <p>继续使用本应用即表示您已充分理解并同意遵守上述所有条款。如您不同意以上任何条款，请立即停止使用并卸载本应用。</p>
+          <p class="notice-strong">继续使用即视为同意上述全部条款；如不同意，请立即停止使用并卸载本应用。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo"><img class="footer-logo-icon" src="img/logo.png" alt="北梦之镜">北梦之镜</div>
+        <p class="footer-desc">一款 Windows 桌面端 ROM 下载与刷机工具。覆盖 15 大品牌、2680 款机型、83164 条官方 ROM 直链，从获取镜像到一键刷机，全程开箱即用。</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>产品</h4>
+          <a href="#features">镜像获取</a>
+          <a href="#features">ROM 直链</a>
+          <a href="#plugins">ROM 下载器</a>
+          <a href="#plugins">fastboot 速刷</a>
+          <a href="#plugins">一键 ROOT</a>
+        </div>
+        <div class="footer-col">
+          <h4>功能</h4>
+          <a href="#plugins">GKI 内核</a>
+          <a href="#plugins">分区提取</a>
+          <a href="#plugins">实时投屏</a>
+          <a href="#features">多语言 · 多地区</a>
+        </div>
+        <div class="footer-col">
+          <h4>支持</h4>
+          <a href="#status">服务状态</a>
+          <a href="#notice">使用前须知</a>
+          <a href="#catalog">机型目录</a>
+          <a href="https://qfile.qq.com/q/YZ2RIbnO48" target="_blank">下载</a>
+          <a href="https://qm.qq.com/q/4dipYvBqIw" target="_blank">交流群</a>
+        </div>
+        <div class="footer-col">
+          <h4>关于</h4>
+          <a href="#brands">覆盖品牌</a>
+          <a href="#catalog">官方包</a>
+          <a href="https://o.521567.xyz/org/BMZJ" target="_blank">官网</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <p class="footer-copy">自 2024 年 10 月起运营 · Copyright © 2024-2026 星野ROM桌面版联合北梦之境 · 保留所有权利</p>
+      <p class="footer-slogan">Designed for people who flash their phones.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+
+<!-- 回到顶部 -->
+<button class="back-top" id="back-top" aria-label="回到顶部" title="回到顶部">↑</button>
+</body>
+</html>
