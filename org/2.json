@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "latest": {
+    "version": "1.0.0.1",
+    "version_code": 100001,
+    "force_update": false,
+    "published_at": "2026-11-01T12:00:00+08:00",
+    "download_url": "",
+    "file_size": 0,
+    "sha256": "",
+    "notes": [
+      "ROM 新增收录 3700+",
+      "提取镜像支持 OPPO / 真我 / 一加 / 小米 / 红米 / vivo / iQOO / 三星 / 魅族",
+      "天玑处理器提取镜像新增 lk 分区"
+    ]
+  }
+}
